@@ -1,6 +1,6 @@
 from unittest.mock import patch
 
-from psycopg2 import OperationalError as Psycopg2error
+from psycopg2 import OperationalError as Psycopg2OpError
 
 from django.core.management import call_command
 from django.db.utils import OperationalError
@@ -18,7 +18,8 @@ class CommandTests(SimpleTestCase):
     def test_wait_for_db_delay(self, patched_sleep,patched_check):
         """Test waiting when for database when operational error"""
 
-        patched_check=[Psycopg2error]*2 +[OperationalError]*3+[True]
+        patched_check=[Psycopg2OpError]*2 +\
+            [OperationalError]*3+[True]
 
         call_command['wait_for_db']
         self.assertEqual(patched_check.call_count,6)
