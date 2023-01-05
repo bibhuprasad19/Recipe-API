@@ -30,7 +30,7 @@ class AuthTokenSerializer(serializers.Serializer):
             password=password
         )
         if not user:
-            msg = 'user not authenticated ..Incorrect Credentials'
+            msg = _('user not authenticated ..Incorrect Credentials')
             raise serializers.ValidationError(msg,code = 'authorization')
         attrs['user'] = user
         return user
