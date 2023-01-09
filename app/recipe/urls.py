@@ -10,8 +10,8 @@ from recipe import views
 router = DefaultRouter()
 router.register('recipes',views.RecipeViewsets)
 
-app_name = 'recipes'
+app_name = 'recipe'
 
-urlpatterns = {
+urlpatterns = [
     path('',include(router.urls)),
-}
+]
